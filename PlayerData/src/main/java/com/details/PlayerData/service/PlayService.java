@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface PlayService {
     PlayerDto createPlayer(PlayerDto player, Integer teamId);
-    PlayerDto updatePlayer(PlayerDto player, Integer teamId, Integer pId);
+    PlayerDto updatePlayer(PlayerDto player,  Integer pId);
     PlayerDto getPlayerById(Integer pId);
     List<PlayerDto> getAllPlayers();
     List<PlayerDto> getAllPlayerByTeamId(Integer teamId);
+
+    PlayerDto deletePlayerById(Integer pId);
 }

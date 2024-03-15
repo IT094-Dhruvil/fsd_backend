@@ -36,11 +36,11 @@ public class PlayServiceImpl implements PlayService {
     }
 
     @Override
-    public PlayerDto updatePlayer(PlayerDto player, Integer teamId, Integer pId) {
-        Team team = teamRepo.findById(teamId).orElseThrow(() -> new ResourceNotFound("Team", "Id", teamId));
-        Player p1 = playerRepo.findById(pId).orElseThrow(() -> new ResourceNotFound("Player", "Id", pId));
+    public PlayerDto updatePlayer(PlayerDto player, Integer pId) {
 
-        p1.setPId(pId);
+        Player p1 = playerRepo.findById(pId).orElseThrow(() -> new ResourceNotFound("Player", "Id", pId));
+        p1.setPId(player.getPId());
+        p1.setMatches(player.getMatches());
         p1.setPlayerName(player.getPlayerName());
         p1.setSr(player.getSr());
         p1.setBest(player.getBest());
@@ -49,7 +49,7 @@ public class PlayServiceImpl implements PlayService {
         p1.setP50s(player.getP50s());
         p1.setP100s(player.getP100s());
         p1.setWickets(player.getWickets());
-        p1.setTeam(team);
+
         Player p2 = playerRepo.save(p1);
         return mopdel.map(p2, PlayerDto.class);
     }
@@ -73,5 +73,16 @@ public class PlayServiceImpl implements PlayService {
         List<Player> players = playerRepo.findPlayerByTeam(team);
         List<PlayerDto> playerDtos = players.stream().map(player -> mopdel.map(player, PlayerDto.class)).collect(Collectors.toList());
         return playerDtos;
+    }
+
+    @Override
+    public PlayerDto deletePlayerById(Integer pId) {
+        Player player = playerRepo.findById(pId).get();
+
+
+
+        playerRepo.delete(player);
+
+        return mopdel.map(player,PlayerDto.class);
     }
 }

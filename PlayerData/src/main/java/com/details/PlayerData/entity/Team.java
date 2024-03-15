@@ -17,6 +17,6 @@ public class Team {
 
     private String teamName;
 
-    @OneToMany(mappedBy = "team" ,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "team" ,fetch = FetchType.EAGER)
     private List<Player> players;
 }
