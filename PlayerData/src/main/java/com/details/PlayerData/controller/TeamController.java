@@ -20,10 +20,10 @@ public class TeamController {
         return new ResponseEntity<>(teamService.createTeam(teamDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{teamId}")
-    private ResponseEntity<?> updateTeam(@RequestBody TeamDto teamDto, @PathVariable("teamId") Integer teamId){
-        return new ResponseEntity<>(teamService.updateTeam(teamDto, teamId), HttpStatus.OK);
-    }
+//    @PutMapping("/{teamId}")
+//    private ResponseEntity<?> updateTeam(@RequestBody TeamDto teamDto, @PathVariable("teamId") Integer teamId){
+//        return new ResponseEntity<>(teamService.updateTeam(teamDto, teamId), HttpStatus.OK);
+//    }
 
     @GetMapping("/{teamId}")
     private ResponseEntity<?> getTeamById(@PathVariable("teamId") Integer teamId){
